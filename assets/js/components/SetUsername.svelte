@@ -78,7 +78,13 @@
     }
 </style>
 
-<form in:fade={{delay: 300}} bind:this={form} action="/set-name" method="post" on:submit={onSubmit}>
+<form in:fade={{delay: 300}}
+      bind:this={form}
+      action="/set-name"
+      method="post"
+      autocomplete="off"
+      on:submit={onSubmit}
+>
     <p class="invalid" class:show={invalid}>Please enter a valid username, between 2-20 characters (a-öA-Ö0-9) </p>
     <label for="username">What's your name ?</label>
     <input on:input="{resetInvalid}" bind:value={username} name="username" id="username" type="text">
