@@ -42,6 +42,9 @@
         height: 100%;
         overflow: scroll;
 
+        /* Safari, what more to say ¯\_(ツ)_/¯ */
+        -webkit-transform:translate3d(0,0,0);
+
         display: grid;
         grid-template-rows: 10fr 1fr 1fr;
         grid-template-areas:
@@ -97,13 +100,15 @@
     }
 
     li {
+        display: grid;
+        grid-template-columns: fit-content(100px) fit-content(500px);
         list-style: none;
         padding: 1rem;
     }
 
     .messages {
         grid-area: chat;
-        height: 100%
+        height: 100%;
     }
 
     .user {
@@ -121,8 +126,8 @@
         position: absolute;
         content: "";
         background: yellow;
-        top: calc(50% - 8px);
-        right: -36px;
+        top: 22px;
+        right: -30px;
         transform: rotate(45deg);
         width: 16px;
         height: 16px;
@@ -150,6 +155,14 @@
 
         z-index: 1;
         position: relative;
+        align-self: flex-start;
+    }
+
+    .time {
+        font-weight: normal;
+        font-size: .8rem;
+        display: block;
+        margin-top: .5rem;
     }
 </style>
 
@@ -162,9 +175,11 @@
     <ul class="messages">
         {#each messages as {id, user, msg, timestamp}, index (id) }
             <li>
-                <span class="user">{user}</span>
+                <span class="user">
+                    {user}
+                    <span class="time">{getTimeAgo(timestamp)}</span>
+                </span>
                 <span class="message">{msg}</span>
-                <p class="time">{getTimeAgo(timestamp)}</p>
             </li>
         {/each}
     </ul>
