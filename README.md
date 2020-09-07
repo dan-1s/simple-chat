@@ -13,6 +13,10 @@ where we configure `RELEASE_DISTRIBUTION`, `RELEASE_NODE` and `ELIXIR_ERL_OPTION
 1. Elixir and Erlang. See [installation instructions](https://elixir-lang.org/install.html).
 2. Phoenix. See [installation instruction](https://hexdocs.pm/phoenix/installation.html).
 
+## First time
+1. Install Elixir project dependencies `mix deps.get`
+2. Install client side dependencies `npm install --prefix assets`
+
 ## How to run development server 
 You can start a single instance development server using `PORT=4000 mix phx.server` then
 visit [localhost:4000](http://localhost:4000).
