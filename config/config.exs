@@ -1,19 +1,19 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Mix.Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
-# General application configuration
-use Mix.Config
+import Config
 
 # Configures the endpoint
 config :simple_chat, SimpleChatWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "eMD99tu7w1H+z8t1E1sq0RFrNdezTTdy1WWwh/BJNU3xLibWaH0w03GdxvNlMz93",
-  render_errors: [view: SimpleChatWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: SimpleChat.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "cjLkcZYC"]
+  render_errors: [
+    formats: [html: SimpleChatWeb.ErrorView, json: SimpleChatWeb.ErrorView],
+    layout: false
+  ],
+  pubsub_server: SimpleChat.PubSub
+
+config :simple_chat, :session_options,
+  store: :cookie,
+  key: "_simple_chat_key",
+  signing_salt: "H1SmjnNy"
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -92,12 +92,7 @@
         width: 100%;
     }
 
-    :global(.webplossless .ipad-content) {
-        background: url("/images/pen.webp");
-        background-size: cover;
-    }
-
-    :global(html:not(.webplossless) .ipad-content) {
+    .ipad-content {
         background: url("/images/pen.jpg");
         background-size: cover;
     }

@@ -10,8 +10,10 @@ In Elixir these features are opt in. For the releases we're opting in with chang
 where we configure `RELEASE_DISTRIBUTION`, `RELEASE_NODE` and `ELIXIR_ERL_OPTIONS`.
 
 ## Prerequisites
-1. Elixir and Erlang. See [installation instructions](https://elixir-lang.org/install.html).
-2. Phoenix. See [installation instruction](https://hexdocs.pm/phoenix/installation.html).
+1. Erlang/OTP 28
+2. Elixir 1.19.5
+3. Phoenix 1.8.5 compatible dependencies via `mix deps.get`
+4. Node.js/npm for the Vite + Svelte asset pipeline
 
 ## First time
 1. Install Elixir project dependencies `mix deps.get`
@@ -24,14 +26,15 @@ visit [localhost:4000](http://localhost:4000).
 To start multiple instances and connect them together:
 1. In a terminal tab type `PORT=4000 iex --name one@127.0.0.1 -S mix phx.server`
 2. In another terminal tab type `PORT=4001 iex --name two@127.0.0.1 -S mix phx.server`
-3. Then connect them, e.g. if you're on `one@127.0.0.1` type `Node.connect(:"two@127.0.0.1")` or vice versa.
+3. The development session cookie key is derived from `PORT`, so each node keeps its own browser session.
+4. Then connect them, e.g. if you're on `one@127.0.0.1` type `Node.connect(:"two@127.0.0.1")` or vice versa.
 
 ## Build a production release
 
 Build assets:
 ```
 npm install --prefix assets
-npm run deploy --prefix assets
+npm run build --prefix assets
 ```
 Create release:
 ```

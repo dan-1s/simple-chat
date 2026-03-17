@@ -1,5 +1,6 @@
+import { mount } from "svelte";
 import App from "./App.svelte";
 
-const app = new App({
+mount(App, {
   target: document.getElementById("app"),
 });

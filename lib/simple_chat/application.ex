@@ -8,6 +8,7 @@ defmodule SimpleChat.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      {Phoenix.PubSub, name: SimpleChat.PubSub},
       # Start the endpoint when the application starts
       SimpleChatWeb.Endpoint,
       SimpleChat.Replication,

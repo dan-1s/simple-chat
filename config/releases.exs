@@ -1,7 +1,7 @@
 import Config
 
 secret_key_base = System.fetch_env!("SECRET_KEY_BASE")
-port = System.fetch_env!("PORT")
+port = System.fetch_env!("PORT") |> String.to_integer()
 
 config :simple_chat, SimpleChatWeb.Endpoint,
   http: [port: port],

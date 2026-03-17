@@ -19,8 +19,10 @@
     function onSubmit(e) {
         e.preventDefault();
         const isValid = validate(username);
-        const token = document.querySelector('meta[csrf-param=_csrf_token]');
-        csrfInput.value = token.content
+        const token = document
+            .querySelector('meta[name="csrf-token"]')
+            ?.getAttribute("content");
+        csrfInput.value = token || "";
 
         if (!isValid) {
             invalid = true;
@@ -91,4 +93,3 @@
     <button type="submit">Set name</button>
     <input type="hidden" name="_csrf_token" bind:this={csrfInput}>
 </form>
-

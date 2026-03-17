@@ -1,11 +1,7 @@
-use Mix.Config
+import Config
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
-#
-# The watchers configuration can be used to run external
-# watchers to your application. For example, we use it
-# with webpack to recompile .js and .css sources.
 config :simple_chat, SimpleChatWeb.Endpoint,
   http: [port: System.get_env("PORT") || 4000],
   debug_errors: true,
@@ -13,15 +9,15 @@ config :simple_chat, SimpleChatWeb.Endpoint,
   check_origin: false,
   watchers: [
     node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
+      "dev-server.mjs",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
 config :simple_chat, :gzip, false
+config :simple_chat, :vite, dev_server: "http://127.0.0.1:5173"
+config :simple_chat, :session_options,
+  key: "_simple_chat_key_#{System.get_env("PORT") || "4000"}"
 
 # ## SSL Support
 #
