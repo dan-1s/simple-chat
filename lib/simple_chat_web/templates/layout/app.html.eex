@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><%= assigns[:page_title] || "SimpleChat" %></title>
 
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detectWebp.js") %>"></script>
-    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <%= if vite_dev?() do %>
+      <script type="module" src="<%= vite_client_path() %>"></script>
+    <% end %>
+    <%= for css_path <- vite_stylesheet_paths("js/app.js") do %>
+      <link rel="stylesheet" href="<%= css_path %>"/>
+    <% end %>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 
     <%= csrf_meta_tag() %>
@@ -17,13 +21,13 @@
         <p><%= assigns[:node] %></p>
     </div>
 
-    <%= render @view_module, @view_template, assigns %>
+    <%= @inner_content %>
 
     <script>
             window.userId="<%= assigns[:id] %>";
             window.authToken="<%= assigns[:auth_token] %>";
     </script>
 
-    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="module" src="<%= vite_javascript_path("js/app.js") %>"></script>
   </body>
 </html>

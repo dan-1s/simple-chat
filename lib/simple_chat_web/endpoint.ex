@@ -1,15 +1,6 @@
 defmodule SimpleChatWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :simple_chat
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  @session_options [
-    store: :cookie,
-    key: "_simple_chat_key",
-    signing_salt: "H1SmjnNy"
-  ]
-
   socket "/chat_socket", SimpleChatWeb.ChatSocket,
     websocket: true,
     longpoll: false
@@ -21,7 +12,7 @@ defmodule SimpleChatWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :simple_chat,
-    gzip: Application.fetch_env!(:simple_chat, :gzip),
+    gzip: Application.compile_env(:simple_chat, :gzip, false),
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -42,6 +33,6 @@ defmodule SimpleChatWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-  plug Plug.Session, @session_options
+  plug SimpleChatWeb.Plugs.Session
   plug SimpleChatWeb.Router
 end

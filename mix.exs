@@ -5,9 +5,9 @@ defmodule SimpleChat.MixProject do
     [
       app: :simple_chat,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.19",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      listeners: [Phoenix.CodeReloader],
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -32,13 +32,15 @@ defmodule SimpleChat.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.16"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
+      {:phoenix, "~> 1.8.5"},
+      {:phoenix_html, "~> 4.2"},
+      {:phoenix_html_helpers, "~> 1.0"},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
+      {:phoenix_pubsub, "~> 2.1"},
+      {:phoenix_view, "~> 2.0"},
+      {:gettext, "~> 0.26"},
+      {:jason, "~> 1.4"},
+      {:plug_cowboy, "~> 2.7"},
       {:elixir_uuid, "~> 1.2"}
     ]
   end
